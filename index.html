@@ -32,13 +32,26 @@
                 <p v-if="movie.cast.length === 0">
                     No cast information available 😢
                 </p>
-                <p
+                <div
                     v-else
                     v-for="member in movie.cast"
                 >
-                    {{member.actor}} plays the character {{member.character}}.
-                </p>
+                    <p>
+                        {{member.actor}} plays the character
+                        {{member.character}}.
+                    </p>
+                    <button @click="addFavoriteCharacter(member.character)">
+                        Add to favorite characters
+                    </button>
+                </div>
             </div>
+            <h2>Favorite Characters</h2>
+            <p v-if="favoriteCharacters.length === 0">
+                No favorite characters added.
+            </p>
+            <ul v-else>
+                <li v-for="character in favoriteCharacters">{{character}}</li>
+            </ul>
         </div>
 
         <!-- vue import -->
@@ -95,7 +108,14 @@
                                 ],
                             },
                         ],
+                        favoriteCharacters: [],
                     }
+                },
+                methods: {
+                    addFavoriteCharacter(member) {
+                        this.favoriteCharacters.push(member)
+                        console.log(`${member} added to favorite characters.`)
+                    },
                 },
             })
 
