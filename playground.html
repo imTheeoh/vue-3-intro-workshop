@@ -16,6 +16,26 @@
         <h1>Hello Frontend Masters!</h1>
         <!-- {{}} is used to embed data into the html -->
         <div id="app">
+            <p></p>
+            <p>{{count}}</p>
+            <input
+                type="number"
+                name="new-increment"
+                id="new-increment"
+                v-model="incrementAmount"
+            />
+            <button v-on:click="increment">Increment with v-model</button>
+            <hr />
+            <!-- <p>{{count}}</p>
+            <input
+                type="number"
+                name="increment-step"
+                id="increment-step"
+                v-bind:value="incrementAmount"
+                v-on:input="changeIncrementAmount"
+            />
+            <button v-on:click="increment">Increment with v-bind</button>
+            <hr /> -->
             <!-- the v- attributes are referred to as vue directives and they help with reactive updates to the dom -->
             <p v-if="message.length % 2 === 0">Even: {{message}}</p>
             <p v-else>Odd: {{message}}</p>
@@ -37,6 +57,7 @@
 
             /* createApp is given a configuration object. in this case the options api is showcased from vue 2 rather than composition api from vue 3 */
             const app = createApp({
+                // below is reactive data properties
                 data() {
                     return {
                         message: "Yes it works!",
@@ -58,7 +79,18 @@
                                 age: 23,
                             },
                         ],
+                        count: 0,
+                        incrementAmount: 1,
                     }
+                },
+                // below we are operating on our reactive data properties
+                methods: {
+                    increment() {
+                        this.count += this.incrementAmount
+                    },
+                    // changeIncrementAmount(event) {
+                    //     this.incrementAmount = Number(event.target.value)
+                    // },
                 },
             })
 
