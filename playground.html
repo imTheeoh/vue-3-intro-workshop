@@ -16,7 +16,7 @@
         <h1>Hello Frontend Masters!</h1>
         <!-- {{}} is used to embed data into the html -->
         <div id="app">
-            <p></p>
+            <h2>{{ updateCounterTitle }}</h2>
             <p>{{count}}</p>
             <input
                 type="number"
@@ -81,7 +81,33 @@
                         ],
                         count: 0,
                         incrementAmount: 1,
+                        counterTitle: "Small Count",
                     }
+                },
+                /* computed is good for when you want to obtain a value based on other reactive data. the result will be cached and only recalculated when necessary */
+                computed: {
+                    updateCounterTitle() {
+                        if (this.count > 1000) {
+                            return "Absolutely Massive"
+                        } else if (this.count > 100) {
+                            return "Relatively Big"
+                        } else {
+                            return "Standard Count"
+                        }
+                    },
+                },
+                /* watch is good when we want to watch a specific value and perform side effects such as making an api call or updating other data properties. it is also good for reacting to data changes without return an obtained value */
+                watch: {
+                    // count(newValue) {
+                    //     console.log(newValue)
+                    //     if (newValue > 1000) {
+                    //         this.counterTitle = "Fuckinggg Hugeeee"
+                    //     } else if (newValue > 100) {
+                    //         this.counterTitle = "Large Count"
+                    //     } else if (newValue > 20) {
+                    //         this.counterTitle = "Medium Count"
+                    //     }
+                    // },
                 },
                 // below we are operating on our reactive data properties
                 methods: {
