@@ -11,6 +11,7 @@
     <body>
         <div id="app">
             <h1>Movie Information</h1>
+            <p>{{totalDurationBasedDescription}}</p>
             <!-- v-if removes an element from the dom entirely if the condition is false. v-show and v-hide only removes an elements visibility using css so if something might cause performance issues due to being destroyed and recreated the whole time, use v-show and v-hide instead -->
             <p v-if="movies.length === 0">No movie information available 😢</p>
             <div
@@ -20,7 +21,7 @@
                 <h2>{{movie.name}}</h2>
                 <p v-if="movie.releaseYear === 0">Unknown Release Date</p>
                 <p v-else>Released: {{movie.releaseYear}}</p>
-                <p v-if="movie.duration === ''">Unknown Duration</p>
+                <p v-if="movie.duration === 0">Unknown Duration</p>
                 <p v-else>Duration: {{movie.duration}}</p>
                 <p v-if="movie.genre.length === 0">Unknown Genre</p>
                 <div v-else>
@@ -66,7 +67,7 @@
                             {
                                 name: "Turbo",
                                 releaseYear: 2013,
-                                duration: "1h 36m",
+                                duration: 34000,
                                 genre: ["Sport", "Adventure"],
                                 cast: [
                                     {
@@ -86,7 +87,7 @@
                             {
                                 name: "Cars",
                                 releaseYear: 2006,
-                                duration: "1h 57m",
+                                duration: 117,
                                 genre: ["Family", "Comedy"],
                                 cast: [
                                     {
@@ -110,6 +111,29 @@
                         ],
                         favoriteCharacters: [],
                     }
+                },
+                computed: {
+                    totalDurationBasedDescription() {
+                        let totalWatchMinutes = 0
+                        for (let movie of this.movies) {
+                            totalWatchMinutes += movie.duration
+                        }
+
+                        const totalWatchHours = totalWatchMinutes / 60
+                        if (totalWatchHours < 24) {
+                            console.log(totalWatchHours)
+                            return "We provide a list of movies that you can binge within a day!"
+                        } else if (
+                            totalWatchHours >= 24 &&
+                            totalWatchHours < 100
+                        ) {
+                            console.log(totalWatchHours)
+                            return "We provide a list of movies for you weekend binge!"
+                        } else {
+                            console.log(totalWatchHours)
+                            return "We have a fuck ton of movies!"
+                        }
+                    },
                 },
                 methods: {
                     addFavoriteCharacter(member) {

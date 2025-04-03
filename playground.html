@@ -84,7 +84,7 @@
                         counterTitle: "Small Count",
                     }
                 },
-                /* computed is good for when you want to obtain a value based on other reactive data. the result will be cached and only recalculated when necessary */
+                /* computed is good for when you want to obtain a value based on other reactive data. the result will be cached and only recalculated when necessary. in essence computed manages data */
                 computed: {
                     updateCounterTitle() {
                         if (this.count > 1000) {
@@ -96,7 +96,7 @@
                         }
                     },
                 },
-                /* watch is good when we want to watch a specific value and perform side effects such as making an api call or updating other data properties. it is also good for reacting to data changes without return an obtained value */
+                /* watch is good when we want to watch a specific value and perform side effects such as making an api call or updating other data properties. it is also good for reacting to data changes without return an obtained value. in essence watch manages actions that should happen based on some reactive data */
                 watch: {
                     // count(newValue) {
                     //     console.log(newValue)
