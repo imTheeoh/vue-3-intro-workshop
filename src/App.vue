@@ -2,7 +2,7 @@
 <script>
 import RandomCounter from './components/RandomCounter.vue'
 import LoopingUsers from './components/LoopingUsers.vue'
-import MovieApp from './components/MovieApp.vue'
+import MoviesList from './components/MoviesList.vue'
 import FormCapture from './components/FormCapture.vue'
 
 export default {
@@ -10,7 +10,7 @@ export default {
   components: {
     RandomCounter,
     LoopingUsers,
-    MovieApp,
+    MoviesList,
     FormCapture,
   },
   // reactive data properties
@@ -32,7 +32,7 @@ export default {
   <hr />
   <LoopingUsers />
   <hr />
-  <MovieApp />
+  <MoviesList />
   <hr />
   <FormCapture />
 </template>
