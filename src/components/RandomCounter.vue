@@ -28,15 +28,13 @@ export default {
 </script>
 
 <template>
-  <div>
-    <h2>Simple Count Button</h2>
-    <input
-      type="number"
-      name="count__increment-val"
-      id="count__increment-val"
-      v-model="countIncrementAmount"
-    />
-    <button v-on:click="incrementCount">Increment Count</button>
-    <p>{{ changeCountDescriptionParagraph }} {{ count }}</p>
-  </div>
+  <h2>Simple Count Button</h2>
+  <input
+    type="number"
+    name="count__increment-val"
+    id="count__increment-val"
+    v-model="countIncrementAmount"
+  />
+  <button v-on:click="incrementCount">Increment Count</button>
+  <p>{{ changeCountDescriptionParagraph }} {{ count }}</p>
 </template>
