@@ -4,6 +4,7 @@ import RandomCounter from './components/RandomCounter.vue'
 import LoopingUsers from './components/LoopingUsers.vue'
 import MoviesList from './components/MoviesList.vue'
 import FormCapture from './components/FormCapture.vue'
+import BaseLayout from './components/BaseLayout.vue'
 
 export default {
   // components option allows us to register components that we want to use throughout our app or within other components
@@ -12,6 +13,7 @@ export default {
     LoopingUsers,
     MoviesList,
     FormCapture,
+    BaseLayout,
   },
   // reactive data properties
   data() {
@@ -28,13 +30,20 @@ export default {
 
 <!-- <template> manages html -->
 <template>
-  <RandomCounter />
-  <hr />
-  <LoopingUsers />
-  <hr />
-  <MoviesList />
-  <hr />
-  <FormCapture />
+  <BaseLayout>
+    <template v-slot:section-1>
+      <RandomCounter />
+    </template>
+    <template v-slot:section-2>
+      <LoopingUsers />
+    </template>
+    <template v-slot:section-3>
+      <MoviesList />
+    </template>
+    <template v-slot:footer>
+      <FormCapture />
+    </template>
+  </BaseLayout>
 </template>
 
 <!-- <style> manages css -->

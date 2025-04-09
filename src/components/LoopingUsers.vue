@@ -22,11 +22,9 @@ export default {
 </script>
 
 <template>
-  <div>
-    <h2>User Looping</h2>
-    <p v-if="users.length === 0">No users in the system 😓</p>
-    <p v-else v-for="(user, index) in users">
-      User number {{ index }} is {{ user.name }} {{ user.surname }}.
-    </p>
-  </div>
+  <h2>User Looping</h2>
+  <p v-if="users.length === 0">No users in the system 😓</p>
+  <p v-else v-for="(user, index) in users">
+    User number {{ index }} is {{ user.name }} {{ user.surname }}.
+  </p>
 </template>
