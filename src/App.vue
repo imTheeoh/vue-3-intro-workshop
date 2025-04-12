@@ -1,25 +1,61 @@
+<!-- <script> manages js -->
 <script>
-// api url -> https://pokeapi.co/api/v2/pokemon?limit=151
-export default {
-  data: () => ({
-    pokedex: null,
-  }),
-  methods: {
-    async fetchPokemon() {
-      const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
-      const pokemonData = await response.json()
-      console.log(`${pokemonData.results.length} Pokemon loaded into the Pokédex`)
+import RandomCounter from './components/RandomCounter.vue'
+import LoopingUsers from './components/LoopingUsers.vue'
+import MoviesList from './components/MoviesList.vue'
+import FormCapture from './components/FormCapture.vue'
+import BaseLayout from './components/BaseLayout.vue'
 
-      this.pokedex = pokemonData.results
-    },
+export default {
+  // components option allows us to register components that we want to use throughout our app or within other components
+  components: {
+    RandomCounter,
+    LoopingUsers,
+    MoviesList,
+    FormCapture,
+    BaseLayout,
   },
-  // the created lifecycle hook ensures our api call has already gone and fetched the data before the component gets rendered so the data is immediately visible
-  created() {
-    this.fetchPokemon()
+  // reactive data properties
+  data() {
+    return {
+      currentPage: null,
+    }
+  },
+  // use computed when you want to obtain a value based on other reactive data. results are cached and recalculated only when necessary. computed manages data
+  computed: {},
+  // use watch when you want to watch a specific value and perform side effects. good for reacting to state changes without returning a value. watch manages actions that should happen based on state
+  watch: {},
+  // methods are simply methods that operate on reactive data properties
+  methods: {
+    setPageRandomCounter() {
+      this.currentPage = 'RandomCounter'
+    },
+    setPageLoopingUsers() {
+      this.currentPage = 'LoopingUsers'
+    },
+    setPageMoviesList() {
+      this.currentPage = 'MoviesList'
+    },
+    setPageFormCapture() {
+      this.currentPage = 'FormCapture'
+    },
   },
 }
 </script>
 
+<!-- <template> manages html -->
 <template>
-  <pre>{{ pokedex }}</pre>
+  <nav>
+    <a href="#" @click.prevent="setPageRandomCounter">Random Counter</a>
+    <a href="#" @click.prevent="setPageLoopingUsers">Looping Users</a>
+    <a href="#" @click.prevent="setPageMoviesList">Movies List</a>
+    <a href="#" @click.prevent="setPageFormCapture">Form Capture</a>
+  </nav>
+  <RandomCounter v-if="currentPage === 'RandomCounter'" />
+  <LoopingUsers v-else-if="currentPage === 'LoopingUsers'" />
+  <MoviesList v-else-if="currentPage === 'MoviesList'" />
+  <FormCapture v-else-if="currentPage === 'FormCapture'" />
 </template>
+
+<!-- <style> manages css -->
+<style></style>
