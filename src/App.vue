@@ -22,7 +22,11 @@ export default {
     }
   },
   // use computed when you want to obtain a value based on other reactive data. results are cached and recalculated only when necessary. computed manages data
-  computed: {},
+  computed: {
+    renderPage() {
+      return this.currentPage
+    },
+  },
   // use watch when you want to watch a specific value and perform side effects. good for reacting to state changes without returning a value. watch manages actions that should happen based on state
   watch: {},
   // methods are simply methods that operate on reactive data properties
@@ -51,10 +55,7 @@ export default {
     <a href="#" @click.prevent="setPageMoviesList">Movies List</a>
     <a href="#" @click.prevent="setPageFormCapture">Form Capture</a>
   </nav>
-  <RandomCounter v-if="currentPage === 'RandomCounter'" />
-  <LoopingUsers v-else-if="currentPage === 'LoopingUsers'" />
-  <MoviesList v-else-if="currentPage === 'MoviesList'" />
-  <FormCapture v-else-if="currentPage === 'FormCapture'" />
+  <component :is="renderPage" />
 </template>
 
 <!-- <style> manages css -->
